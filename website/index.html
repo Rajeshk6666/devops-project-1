@@ -3,70 +3,94 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DevOps Project 1 — Azure Static Website CI/CD</title>
+  <title>Azure CI/CD — Static Website Deployment</title>
   <style>
     body{font-family:Arial, sans-serif; margin:0; background:#0b1220; color:#e6edf3;}
-    .wrap{max-width:950px; margin:auto; padding:40px 20px;}
+    .wrap{max-width:980px; margin:auto; padding:44px 20px;}
     .card{background:#111a2e; border:1px solid #223054; border-radius:16px; padding:24px; margin-top:18px;}
     .title{font-size:34px; margin:0;}
-    .sub{opacity:.85; margin-top:8px; font-size:16px;}
+    .sub{opacity:.85; margin-top:10px; font-size:16px; line-height:1.5}
     .pill{display:inline-block; padding:8px 12px; border-radius:999px; background:#1b2a4a; border:1px solid #2a3b64; margin:6px 6px 0 0; font-size:13px;}
     .btn{display:inline-block; margin-top:14px; padding:10px 14px; background:#2563eb; color:white; border-radius:10px; text-decoration:none;}
     .grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
-    @media(max-width:800px){.grid{grid-template-columns:1fr;}}
-    .small{font-size:14px; opacity:.9; line-height:1.5}
-    code{background:#0b1220; padding:2px 6px; border-radius:8px; border:1px solid #223054;}
+    @media(max-width:850px){.grid{grid-template-columns:1fr;}}
+    .small{font-size:14px; opacity:.92; line-height:1.6}
+    code{background:#0b1220; padding:3px 7px; border-radius:8px; border:1px solid #223054;}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    .hr{height:1px; background:#223054; margin:16px 0;}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <h1 class="title">Rajesh — Cloud & DevOps Engineer</h1>
-    <p class="sub">Project 1: Azure Static Website deployed via CI/CD using GitHub Actions</p>
+    <h1 class="title">Rajesh Kommireddi</h1>
+    <p class="sub">
+      Cloud & DevOps Engineer — Automated deployment of a static website to Azure Storage using GitHub Actions.
+    </p>
 
     <div class="card">
-      <h2 style="margin:0 0 8px 0;">✅ What I built</h2>
+      <h2 style="margin:0 0 8px 0;">Overview</h2>
       <p class="small">
-        A production-style CI/CD pipeline that automatically deploys a static website to <b>Azure Storage Static Website</b>
-        whenever code is pushed to the <code>master</code> branch.
+        This setup demonstrates a simple but production-aligned CI/CD deployment pattern:
+        code changes merged into <code>master</code> trigger a GitHub Actions workflow that publishes website assets to Azure Storage Static Website.
       </p>
 
       <div style="margin-top:10px;">
         <span class="pill">Azure Storage Static Website</span>
         <span class="pill">GitHub Actions</span>
         <span class="pill">CI/CD</span>
-        <span class="pill">Git + Branching + PR</span>
-        <span class="pill">SSH Authentication</span>
+        <span class="pill">Azure CLI</span>
+        <span class="pill">Branching + PR Merge</span>
       </div>
 
-      <a class="btn" href="https://testproject1.z29.web.core.windows.net/" target="_blank">🔗 View Live Website</a>
+      <a class="btn" href="https://testproject1.z29.web.core.windows.net/" target="_blank">Open Live Endpoint</a>
     </div>
 
     <div class="grid">
       <div class="card">
-        <h2 style="margin:0 0 8px 0;">⚙️ Pipeline flow</h2>
-        <p class="small">
-          <b>GitHub Push</b> → <b>GitHub Actions Runner</b> → <b>Upload to $web container</b> → <b>Website Live</b>
+        <h2 style="margin:0 0 8px 0;">Architecture</h2>
+        <p class="small mono">
+          GitHub Push / PR Merge (master)<br/>
+          → GitHub Actions Runner (ubuntu-latest)<br/>
+          → Upload artifacts to Azure Storage ($web)<br/>
+          → Azure Static Website Endpoint serves content
         </p>
+        <div class="hr"></div>
         <p class="small">
-          Deploy command used: <code>az storage blob upload-batch</code>
+          Azure Static Website hosting serves files directly from the reserved <code>$web</code> container.
         </p>
       </div>
 
       <div class="card">
-        <h2 style="margin:0 0 8px 0;">📌 Next upgrades</h2>
+        <h2 style="margin:0 0 8px 0;">Deployment Implementation</h2>
         <p class="small">
-          • Add custom domain + HTTPS<br/>
-          • Add cache/CDN (Azure Front Door)<br/>
-          • Add environment deployments (dev/prod)<br/>
-          • Add basic tests before deploy
+          The workflow checks out the repository and deploys the site using Azure CLI batch upload:
+        </p>
+        <p class="small mono">
+          az storage blob upload-batch<br/>
+          --destination '$web'<br/>
+          --source website<br/>
+          --overwrite
+        </p>
+        <div class="hr"></div>
+        <p class="small">
+          Using <code>--overwrite</code> ensures repeatable deployments and consistent state.
         </p>
       </div>
     </div>
 
     <div class="card">
-      <h2 style="margin:0 0 8px 0;">🚀 Daily DevOps Learning</h2>
+      <h2 style="margin:0 0 8px 0;">Security & Reliability Notes</h2>
       <p class="small">
-        I’ll be sharing one learning/project every day to build strong real-world DevOps skills.
+        • Credentials are stored in <b>GitHub Secrets</b> (not hardcoded in the repo).<br/>
+        • Each deployment run is traceable through Git commit history + Actions logs.<br/>
+        • Changes follow a PR-based workflow to keep the release path controlled.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2 style="margin:0 0 8px 0;">Repository</h2>
+      <p class="small">
+        Source code and workflow: <span class="mono">github.com/Rajeshk6666/devops-project-1</span>
       </p>
     </div>
   </div>
