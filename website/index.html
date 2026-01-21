@@ -1,11 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>DevOps Project 1</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DevOps Project 1 — Azure Static Website CI/CD</title>
+  <style>
+    body{font-family:Arial, sans-serif; margin:0; background:#0b1220; color:#e6edf3;}
+    .wrap{max-width:950px; margin:auto; padding:40px 20px;}
+    .card{background:#111a2e; border:1px solid #223054; border-radius:16px; padding:24px; margin-top:18px;}
+    .title{font-size:34px; margin:0;}
+    .sub{opacity:.85; margin-top:8px; font-size:16px;}
+    .pill{display:inline-block; padding:8px 12px; border-radius:999px; background:#1b2a4a; border:1px solid #2a3b64; margin:6px 6px 0 0; font-size:13px;}
+    .btn{display:inline-block; margin-top:14px; padding:10px 14px; background:#2563eb; color:white; border-radius:10px; text-decoration:none;}
+    .grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+    @media(max-width:800px){.grid{grid-template-columns:1fr;}}
+    .small{font-size:14px; opacity:.9; line-height:1.5}
+    code{background:#0b1220; padding:2px 6px; border-radius:8px; border:1px solid #223054;}
+  </style>
 </head>
 <body>
-  <h1>✅ Deployed via CI/CD</h1>
-  <p>Made by Rajesh 🚀</p>
-  <p>Version: 1.0 | CI/CD in progress 🚀</p>
+  <div class="wrap">
+    <h1 class="title">Rajesh — Cloud & DevOps Engineer</h1>
+    <p class="sub">Project 1: Azure Static Website deployed via CI/CD using GitHub Actions</p>
+
+    <div class="card">
+      <h2 style="margin:0 0 8px 0;">✅ What I built</h2>
+      <p class="small">
+        A production-style CI/CD pipeline that automatically deploys a static website to <b>Azure Storage Static Website</b>
+        whenever code is pushed to the <code>master</code> branch.
+      </p>
+
+      <div style="margin-top:10px;">
+        <span class="pill">Azure Storage Static Website</span>
+        <span class="pill">GitHub Actions</span>
+        <span class="pill">CI/CD</span>
+        <span class="pill">Git + Branching + PR</span>
+        <span class="pill">SSH Authentication</span>
+      </div>
+
+      <a class="btn" href="https://testproject1.z29.web.core.windows.net/" target="_blank">🔗 View Live Website</a>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2 style="margin:0 0 8px 0;">⚙️ Pipeline flow</h2>
+        <p class="small">
+          <b>GitHub Push</b> → <b>GitHub Actions Runner</b> → <b>Upload to $web container</b> → <b>Website Live</b>
+        </p>
+        <p class="small">
+          Deploy command used: <code>az storage blob upload-batch</code>
+        </p>
+      </div>
+
+      <div class="card">
+        <h2 style="margin:0 0 8px 0;">📌 Next upgrades</h2>
+        <p class="small">
+          • Add custom domain + HTTPS<br/>
+          • Add cache/CDN (Azure Front Door)<br/>
+          • Add environment deployments (dev/prod)<br/>
+          • Add basic tests before deploy
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 style="margin:0 0 8px 0;">🚀 Daily DevOps Learning</h2>
+      <p class="small">
+        I’ll be sharing one learning/project every day to build strong real-world DevOps skills.
+      </p>
+    </div>
+  </div>
 </body>
 </html>
+
